@@ -1,0 +1,18 @@
+{{template "header" .}}
+    <body>
+        <div class="container">
+            {{$venueList := index . "data"}}
+                {{range $c := $venueList}}
+                    {{$venue := deref $c}}
+                <div class = "browsingResult">
+                    <div class = "name" >
+                    {{ $venue.Name}} 
+                    </div> 
+                    <div>
+                    Capacity: {{$venue.Capacity}} Type: {{$venue.VenueType}}
+                    </div>
+                </div>
+                {{end}}
+        </div>
+    </body>
+</html> 

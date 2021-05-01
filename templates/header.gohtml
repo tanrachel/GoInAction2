@@ -1,0 +1,36 @@
+{{define "header"}}
+
+<html>
+	<head>
+		<title> Rachel's Booking System</title>
+		<link rel = "stylesheet" ref = "text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+		<link rel = "stylesheet" ref = "text/css" href = "/css/app.css">
+	</head>
+	<body>
+        <div class="header-container">
+            <a href ="/" class = "header-item">Venue Booking System</a>
+			{{$myMap := .}}
+			{{range $key,$value := $myMap}}
+				{{if eq $key "notLoggedInError"}}
+					<p class = "error" >{{$value}}</p>
+				{{end}}
+				{{if eq $key "successAction"}}
+					<p class = "successAction" >{{$value}}</p>
+				{{end}}
+				{{if eq $key "logInStatus"}}
+					{{if eq $value "0"}}
+						<div class = "user">
+							<a href = "/signup"> SignUp </a>
+							<a href = "/login"> LogIn </a>
+						</div>
+					{{end}}
+					{{if eq $value "1"}}
+						<div class = "user">
+							<p>{{index $myMap "username"}}</p>
+							<a href = "/logout"> LogOut </a>
+						</div>
+					{{end}}
+				{{end}}
+			{{end}}
+        </div>
+{{end}}

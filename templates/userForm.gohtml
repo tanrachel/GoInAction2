@@ -1,0 +1,33 @@
+{{template "header" .}} 
+    <body>
+        <div class = "container"> 
+            <div class = "menu-button">
+                <form method = "POST">
+                    {{range $key,$value := . }}
+                        {{if eq $key "login"}}
+                        <h1>Login</h1>
+                        {{end}}
+                        {{if eq $key "signup"}}
+                        <h1>SignUp</h1>
+                        {{end}}
+                        {{if eq $key "invalid"}}
+                        <h1> SignUp</h1>
+                        <p> {{$value}}</p>
+                        {{end}}
+                        {{if eq $key "invalidlogin"}}
+                        <h1> Login</h1>
+                        <p> {{$value}}</p>
+                        {{end}}
+                    {{end}}
+                    <label for="username">UserName: </label>
+                    <input type="text" id="username" name="username">
+                    <br>
+                    <label for="password">password: </label>
+                    <input type="password" id="password" name="password">
+                    <br>    
+                    <input type="submit">
+                </form>
+            </div>
+        </div>    
+    </body>
+</html>

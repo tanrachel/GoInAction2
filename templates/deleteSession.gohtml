@@ -1,0 +1,22 @@
+{{template "header" .}}
+    <body>
+        <div class = "container">
+            <h1>Sessions </h1>
+            <div class = "radio-container">
+                {{$myMap := .}}
+                {{range $key,$value := $myMap}}
+                    {{if eq $key "sessionData"}}
+                        <form method = "POST">
+                            {{range $eachSession := $value}}
+                                <input type="radio" name="chosenSession" value="{{index $eachSession 0}}" id= "{{index $eachSession 0}}">
+                                <label for="{{index $eachSession 0}}">{{index $eachSession 1}}</label>
+                                <br>
+                            {{end}}
+                            <input type="submit">
+                        </form>
+                    {{end}}
+                {{end}}
+            </div>
+        </div>
+    </body>
+</html> 

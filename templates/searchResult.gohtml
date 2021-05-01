@@ -1,0 +1,83 @@
+{{template "header" .}}
+    <body>
+        <div class = "container">
+            <div class = "menu-button">
+                {{template "searchForm"}}
+            </div>
+            {{$myMap := . }}
+            {{range $key,$value := $myMap}}
+                {{if eq $key "choice"}}
+                    {{if eq $value "capacity"}}
+                        <div class = "menu-button">
+                            <p> Available capacities, please choose from one</p>
+                            <p>{{index $myMap "capacity"}}</p>
+                        </div>
+                        <div class = "menu-button">
+                            {{template "searchForm2"}}  
+                        </div>
+                    {{end}}
+                    {{if eq $value "types"}}
+                        <div class = "menu-button">
+                            <p> Available types, please choose from one</p>
+                            <p>{{index $myMap "types"}}</p>
+                        </div>
+                        <div class = "menu-button">
+                            {{template "searchForm2"}}  
+                        </div>
+                    {{end}}
+                    {{if eq $value "date"}}
+                        <div class = "menu-button">
+                            <form method="POST">
+                                <label for="choice2">Month:</label>
+                                <input type="text" id="choice2" name="choice2">
+                                <br>
+                                <label for="choice3">Day:</label>
+                                <input type="text" id="choice3" name="choice3">
+                                <br>
+                                <input type="submit">
+                            </form>
+                        </div>
+                    {{end}}
+                {{end}}
+                {{if eq $key "error"}}
+                    <div class = "menu-button">
+                         <p>Please make sure you entered correctl!</p> 
+                    </div>
+                {{end}}
+                {{if eq $key "data"}}
+                    {{range $c := $value}}
+                        {{$venue := deref $c}}
+                            <div class = "browsingResult">
+                                <div class = "name" >
+                                {{ $venue.Name}} 
+                                </div> 
+                                <div>
+                                Capacity: {{$venue.Capacity}} Type: {{$venue.VenueType}}
+                                </div>
+                            </div>
+                    {{end}}
+                {{end}}
+            {{end}}
+{{/* 
+            {{if not index . "choice"}}
+            {{else}}
+                <div class = "menu-button">
+                    {{$choice := index . "choice"}}
+                        {{if eq $choice "capacity"}}
+                            {{$cap := index . "capacity"}}
+                            <p> Available capacities, please choose from one</p>
+                            <p>{{$cap}}</p>
+                        {{end}}
+                        {{if eq $choice "types"}}
+                            {{$cap := index . "types"}}
+                            <p> Available types, please choose from one</p>
+                            <p>{{$cap}}</p>
+                        {{end}}
+                </div> */}}
+                {{/* <div class = "menu-button">
+                    {{template "searchForm2"}}
+                </div>  */}}
+            {{/* pass in looking for map index results and iterate to print */}}
+        </div> 
+    </body>
+</html> 

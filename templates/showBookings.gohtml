@@ -1,0 +1,28 @@
+{{template "header" .}}
+    <body>
+        <div class="booking-container">
+            {{$myMap:= .}}
+            {{range $key,$value := $myMap}}
+                {{if eq $key "no-data"}}
+                    <div class = "bookingchild"> 
+                        <p>{{$value}}
+                    </div>
+                {{end}}
+                {{if eq $key "data"}}
+                    {{range $venueName,$bookingArray := $value}}
+                        <div class = "bookingchild">
+                            <h3>{{$venueName}}</h3>
+                            {{range $booking := $bookingArray}}
+                                <div class = "booking-item">
+                                    <p>Name: {{index $booking 2}} <br>
+                                    Month: {{index $booking  0}} Day {{index $booking 1}} Time: {{index $booking 4}} - {{index $booking 5}}<br>
+                                    Booked on {{index $booking 3}}</p>
+                                </div>
+                            {{end}}
+                        </div> 
+                    {{end}}
+                {{end}}
+            {{end}}
+        </div>
+    </body>
+</html> 
